@@ -12,8 +12,7 @@ import '../../constants.dart';
 import 'bloc/bmi_bloc.dart';
 
 class InputPage extends StatefulWidget {
-  InputPage({BmiResultBloc bmiResultBloc})
-      : _bmiResultBloc = bmiResultBloc ?? BmiResultBloc();
+  InputPage({BmiResultBloc bmiResultBloc}) : _bmiResultBloc = bmiResultBloc;
 
   final BmiResultBloc _bmiResultBloc;
 
@@ -229,13 +228,14 @@ class _InputPageState extends State<InputPage> {
                           context,
                           MaterialPageRoute(
                             builder: (context) => BlocProvider(
-                              create: (context) => widget._bmiResultBloc
-                                ..add(
-                                  CalculateBMIButtonPressed(
-                                    height: state.height,
-                                    weight: state.weight,
-                                  ),
-                                ),
+                              create: (context) =>
+                                  widget._bmiResultBloc ?? BmiResultBloc()
+                                    ..add(
+                                      CalculateBMIButtonPressed(
+                                        height: state.height,
+                                        weight: state.weight,
+                                      ),
+                                    ),
                               child: ResultsPage(),
                             ),
                           ),
